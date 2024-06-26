@@ -15,13 +15,24 @@ function App() {
     }
   });
 
-  const origWedding = cld.image('docs/small_blurry_wedding');
-  const restoredWedding = cld.image('docs/small_blurry_wedding');
-  const restoredSuperUpscaledWedding = cld.image('docs/small_blurry_wedding'); 
-  const restoredUpscaledWedding = cld.image('docs/small_blurry_wedding'); 
-  const superUpscaledWedding = cld.image('docs/small_blurry_wedding'); 
-  const restoredSuperUpscaledEnhancedWedding = cld.image('docs/small_blurry_wedding'); 
-  const restoredSuperUpscaledEnhancedImprovedWedding = cld.image('docs/small_blurry_wedding'); 
+  const origWedding = cld.image('docs/small-wedding-couple');
+  const enhancedWedding = cld.image('docs/small-wedding-couple');
+  const improvedWedding = cld.image('docs/small-wedding-couple');
+  const restoredWedding = cld.image('docs/small-wedding-couple');
+  const restoredSuperUpscaledWedding = cld.image('docs/small-wedding-couple'); 
+  const restoredUpscaledWedding = cld.image('docs/small-wedding-couple'); 
+  const superUpscaledWedding = cld.image('docs/small-wedding-couple'); 
+  const restoredSuperUpscaledEnhancedWedding = cld.image('docs/small-wedding-couple'); 
+  const restoredSuperUpscaledEnhancedImprovedWedding = cld.image('docs/small-wedding-couple'); 
+  const superUpscaledEnhancedImprovedWedding = cld.image('docs/small-wedding-couple'); 
+  const restoredEnhancedImprovedWedding = cld.image('docs/small-wedding-couple'); 
+  
+  const origTheatreView = cld.image('docs/small-theatre-view');
+  const restoredSuperUpscaledEnhancedImprovedTheatreView = cld.image('docs/small-theatre-view'); 
+
+  const origLivingRoom = cld.image('docs/small-living-room');
+  const restoredSuperUpscaledEnhancedImprovedLivingRoom = cld.image('docs/small-living-room');
+
   const origTim = cld.image('docs/wa_blurry_tim'); 
   const restoredTim = cld.image('docs/wa_blurry_tim'); 
   const restoredEnhancedTim = cld.image('docs/wa_blurry_tim');
@@ -31,11 +42,23 @@ function App() {
   // Restored
   restoredWedding.effect(generativeRestore());
 
+  // Enhanced
+  enhancedWedding.effect(enhance());
+
+  // Improved
+  improvedWedding.adjust(improve());
+
   // Restored and upscaled with simple resize scale
   restoredUpscaledWedding.effect(generativeRestore()).resize(scale().width(1400));
 
+  // Restored, enhanced and improved
+  restoredEnhancedImprovedWedding.effect(generativeRestore()).effect(enhance()).adjust(improve());
+
   // Upscaled with super resolution
   superUpscaledWedding.effect(upscale());
+
+  // Upscaled with super resolution, enhanced and improved
+  superUpscaledEnhancedImprovedWedding.effect(upscale()).effect(enhance()).adjust(improve());
 
   // Restored and upscaled with super resolution
   restoredSuperUpscaledWedding.effect(generativeRestore()).effect(upscale());
@@ -47,33 +70,50 @@ function App() {
   restoredSuperUpscaledEnhancedImprovedWedding.effect(generativeRestore()).effect(upscale()).effect(enhance()).adjust(improve());
 
   // Just resized (downscaled)
-  origTim.resize(scale().width(800));
+//  origTim.resize(scale().width(800));
 
   // Resized and restored
-  restoredTim.resize(scale().width(800)).effect(generativeRestore());
+//  restoredTim.resize(scale().width(800)).effect(generativeRestore());
 
   // Resized, restored and enhanced
-  restoredEnhancedTim.resize(scale().width(800)).effect(generativeRestore()).effect(enhance());
+//  restoredEnhancedTim.resize(scale().width(800)).effect(generativeRestore()).effect(enhance());
   
   // Resized, restored, enhanced and improved
-  restoredEnhancedImprovedTim.resize(scale().width(800)).effect(generativeRestore()).effect(enhance()).adjust(improve());
-  
-  
+//  restoredEnhancedImprovedTim.resize(scale().width(800)).effect(generativeRestore()).effect(enhance()).adjust(improve());
+
+  // Restored, upscaled with super resolution, enhanced and improved
+  restoredSuperUpscaledEnhancedImprovedTheatreView.effect(generativeRestore()).effect(upscale()).effect(enhance()).adjust(improve());
+
+  restoredSuperUpscaledEnhancedImprovedLivingRoom.effect(generativeRestore()).effect(upscale()).effect(enhance()).adjust(improve());
+
   return (
     <>
-    <AdvancedImage cldImg={origTim} width={350}></AdvancedImage>
+{/*
+    <AdvancedImage cldImg={restoredTim} width={400}></AdvancedImage>
+    <br/>
+
+    <AdvancedImage cldImg={origTim} width={400}></AdvancedImage>
     {' '}
-    <AdvancedImage cldImg={restoredEnhancedTim} width={350}></AdvancedImage>
+    <AdvancedImage cldImg={restoredEnhancedTim} width={400}></AdvancedImage>
     {' '}
-    <AdvancedImage cldImg={restoredEnhancedImprovedTim} width={350}></AdvancedImage>
+    <AdvancedImage cldImg={restoredEnhancedImprovedTim} width={400}></AdvancedImage>
+    <br/>
+*/}
+    <AdvancedImage cldImg={origLivingRoom}></AdvancedImage>
+    {' '} 
+    <AdvancedImage cldImg={restoredSuperUpscaledEnhancedImprovedLivingRoom} width={400}></AdvancedImage>    
+
+    <br/>
+    <AdvancedImage cldImg={origTheatreView}></AdvancedImage>
+    {' '} 
+    <AdvancedImage cldImg={restoredSuperUpscaledEnhancedImprovedTheatreView} width={400}></AdvancedImage>    
+
     <br/>
     <AdvancedImage cldImg={origWedding}></AdvancedImage>
     {' '} 
-    <AdvancedImage cldImg={restoredSuperUpscaledEnhancedWedding} width={350}></AdvancedImage>
-    {' '} 
-    <AdvancedImage cldImg={restoredSuperUpscaledEnhancedImprovedWedding} width={350}></AdvancedImage>    
+    <AdvancedImage cldImg={restoredSuperUpscaledEnhancedImprovedWedding} width={400}></AdvancedImage>    
     <br/>
-
+{/*
     <h1>Original vs Restored</h1>
     <div className="container800">
     <ReactCompareSlider
@@ -97,7 +137,7 @@ function App() {
       itemTwo={<ReactCompareSliderImage src={restoredEnhancedImprovedTim.toURL()} alt="Image two" />}
     />
     </div>
-
+*/}
     <h1>Original vs Restored</h1>
     <div className="container350">
     <ReactCompareSlider
@@ -106,7 +146,59 @@ function App() {
     />
     </div>
     <br/>
-  
+
+    <h1>Original vs Upscaled</h1>
+    <div className="container800">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={superUpscaledWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+
+    <h1>Original vs Enhanced</h1>
+    <div className="container350">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={enhancedWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+    <br/>
+
+    <h1>Original vs Improved</h1>
+    <div className="container350">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={improvedWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+    <br/>
+{/*
+    <h1>Original vs Upscaled, Enhanced and Improved</h1>
+    <div className="container350">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={superUpscaledEnhancedImprovedWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+
+    <h1>Original vs Restored, Enhanced and Improved</h1>
+    <div className="container350">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={restoredEnhancedImprovedWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+    <br/>
+*/}
+
+    <h1>Original vs Restored, Upscaled, Enhanced and Improved</h1>
+    <div className="container350">
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src={origWedding.toURL()} alt="Image one" />}
+      itemTwo={<ReactCompareSliderImage src={restoredSuperUpscaledEnhancedImprovedWedding.toURL()} alt="Image two" />}
+    />
+    </div>
+  {/*
     <h1>Restored vs Upscaled</h1>
     <div className="container800">
     <ReactCompareSlider
@@ -138,7 +230,7 @@ function App() {
       itemTwo={<ReactCompareSliderImage src={restoredSuperUpscaledEnhancedImprovedWedding.toURL()} alt="Image two" />}
     />
     </div>
-
+*/}
     </>
   )
 }
