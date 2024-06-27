@@ -16,10 +16,10 @@ function App() {
 
   // Instantiate Cloudinary Images for each version of the image
   const origWedding = cld.image('docs/small-wedding-couple');
-  const enhancedWedding = cld.image('docs/small-wedding-couple');
-  const improvedWedding = cld.image('docs/small-wedding-couple');
   const restoredWedding = cld.image('docs/small-wedding-couple');
   const superUpscaledWedding = cld.image('docs/small-wedding-couple'); 
+  const enhancedWedding = cld.image('docs/small-wedding-couple');
+  const improvedWedding = cld.image('docs/small-wedding-couple');
   const restoredSuperUpscaledEnhancedImprovedWedding = cld.image('docs/small-wedding-couple'); 
   
   const origTheatreView = cld.image('docs/small-theatre-view');
@@ -28,6 +28,7 @@ function App() {
   const origLivingRoom = cld.image('docs/small-living-room');
   const restoredSuperUpscaledEnhancedImprovedLivingRoom = cld.image('docs/small-living-room');
 
+  //origWedding.effect(generativeRestore());
   
   // Restored
   restoredWedding.effect(generativeRestore());
@@ -64,6 +65,11 @@ function App() {
 
   return (
     <>
+    {/*
+    <AdvancedImage cldImg={origWedding}></AdvancedImage>
+    <br/>
+  */}
+
     <AdvancedImage cldImg={origLivingRoom}></AdvancedImage>
     {' '} 
     <AdvancedImage cldImg={restoredSuperUpscaledEnhancedImprovedLivingRoom} width={400}></AdvancedImage>    
